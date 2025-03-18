@@ -9,7 +9,6 @@ namespace Steamworks
 {
 	internal unsafe partial class ISteamClient : SteamInterface
 	{
-		
 		internal ISteamClient( bool IsGameServer )
 		{
 			SetupInterface( IsGameServer );

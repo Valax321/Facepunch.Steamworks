@@ -10098,7 +10098,7 @@
             },
             { "paramname":"cchURLSize", "paramtype":"uint32" },
             {
-              "out_string_count": "cchURLSize",
+              "out_string_count": "cchOriginalFileNameSize",
               "paramname": "pchOriginalFileName",
               "paramtype": "char *"
             },

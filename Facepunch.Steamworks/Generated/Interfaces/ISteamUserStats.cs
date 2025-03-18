@@ -9,6 +9,7 @@ namespace Steamworks
 {
 	internal unsafe partial class ISteamUserStats : SteamInterface
 	{
+		public const string Version = "STEAMUSERSTATS_INTERFACE_VERSION013";
 		
 		internal ISteamUserStats( bool IsGameServer )
 		{
