@@ -17,6 +17,7 @@ namespace Steamworks
 			if ( Interface.Self == IntPtr.Zero ) return false;
 
 			InstallEvents();
+			RequestCurrentStats();
 
 			return true;
 		}
@@ -126,6 +127,16 @@ namespace Steamworks
 		public static bool StoreStats()
 		{
 			return Internal.StoreStats();
+		}
+
+		/// <summary>
+		/// This call is no longer required as it is managed by the Steam client. The game stats and achievements
+		/// will be synchronized with Steam before the game process begins.
+		/// </summary>
+		[Obsolete( "No longer required. Automatically handled by the Steam client.", false )]
+		public static bool RequestCurrentStats()
+		{
+			return true;
 		}
 
 		/// <summary>
