@@ -29,7 +29,7 @@ namespace Steamworks
 		/// wrap those operations with calls to BeginFileWriteBatch and EndFileWriteBatch.
 		/// </summary>
 		/// <returns>True if the write batch was begun, false if there was a batch already in progress.</returns>
-		public bool BeginFileWriteBatch()
+		public static bool BeginFileWriteBatch()
 		{
 			return Internal.BeginFileWriteBatch();
 		}
@@ -38,11 +38,10 @@ namespace Steamworks
 		/// Use this along with <see cref="BeginFileWriteBatch"/> - see that documentation for more details.
 		/// </summary>
 		/// <returns>True if the write batch was ended, false if there was no batch already in progress.</returns>
-		public bool EndFileWriteBatch()
+		public static bool EndFileWriteBatch()
 		{
 			return Internal.EndFileWriteBatch();
 		}
-
 
 		/// <summary>
 		/// Creates a new file, writes the bytes to the file, and then closes the file.
