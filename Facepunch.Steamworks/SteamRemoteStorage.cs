@@ -22,6 +22,27 @@ namespace Steamworks
 			return true;
 		}
 
+		/// <summary>
+		/// Use this along with <see cref="EndFileWriteBatch"/> to wrap a set of local file writes/deletes
+		/// that should be considered part of one single state change.
+		/// For example, if saving game progress requires updating both savegame1.dat and maxprogress.dat,
+		/// wrap those operations with calls to BeginFileWriteBatch and EndFileWriteBatch.
+		/// </summary>
+		/// <returns>True if the write batch was begun, false if there was a batch already in progress.</returns>
+		public bool BeginFileWriteBatch()
+		{
+			return Internal.BeginFileWriteBatch();
+		}
+
+		/// <summary>
+		/// Use this along with <see cref="BeginFileWriteBatch"/> - see that documentation for more details.
+		/// </summary>
+		/// <returns>True if the write batch was ended, false if there was no batch already in progress.</returns>
+		public bool EndFileWriteBatch()
+		{
+			return Internal.EndFileWriteBatch();
+		}
+
 
 		/// <summary>
 		/// Creates a new file, writes the bytes to the file, and then closes the file.
