@@ -872,7 +872,7 @@ namespace Steamworks
 	//
 	// ERemoteStorageLocalFileChange
 	//
-	internal enum RemoteStorageLocalFileChange : int
+	public enum RemoteStorageLocalFileChange : int
 	{
 		Invalid = 0,
 		FileUpdated = 1,
@@ -882,7 +882,7 @@ namespace Steamworks
 	//
 	// ERemoteStorageFilePathType
 	//
-	internal enum RemoteStorageFilePathType : int
+	public enum RemoteStorageFilePathType : int
 	{
 		Invalid = 0,
 		Absolute = 1,

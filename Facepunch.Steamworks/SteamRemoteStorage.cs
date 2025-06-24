@@ -19,8 +19,20 @@ namespace Steamworks
 			SetInterface( server, new ISteamRemoteStorage( server ) );
 			if ( Interface.Self == IntPtr.Zero ) return false;
 
+			InstallEvents();
+			
 			return true;
 		}
+
+		internal static void InstallEvents()
+		{
+			Dispatch.Install<RemoteStorageLocalFileChange_t>(x => OnLocalFileChange?.Invoke());
+		}
+		
+		/// <summary>
+		/// If a Steam app is flagged for supporting dynamic Steam Cloud sync, and a sync occurs, this callback will be posted to the app if any local files changed.
+		/// </summary>
+		public static event Action OnLocalFileChange;
 
 		/// <summary>
 		/// Use this along with <see cref="EndFileWriteBatch"/> to wrap a set of local file writes/deletes
@@ -204,5 +216,27 @@ namespace Steamworks
 			}
 		}
 
+		/// <summary>
+		/// When your application receives <see cref="OnLocalFileChange"/>, use this method to get the number of changes (file updates and file deletes) that have been made. You can then iterate the changes using <see cref="GetLocalFileChange"/>.
+		/// </summary>
+		/// <returns>The number of local file changes that have occurred.</returns>
+		public static int GetLocalFileChangeCount()
+		{
+			return Internal.GetLocalFileChangeCount();
+		}
+
+		/// <summary>
+		/// After calling <see cref="GetLocalFileChangeCount"/>, use this method to iterate over the changes. The changes described have already been made to local files. Your application should take appropriate action to reload state from disk, and possibly notify the user. 
+		/// </summary>
+		/// <param name="changedFileIndex">Zero-based index of the change.</param>
+		/// <param name="change">What happened to this file.</param>
+		/// <param name="type">Type of path to the file returned.</param>
+		/// <returns>The file name or full path of the file affected by this change.</returns>
+		public static string GetLocalFileChange( int changedFileIndex, out RemoteStorageLocalFileChange change, out RemoteStorageFilePathType type)
+		{
+			change = default;
+			type = default;
+			return Internal.GetLocalFileChange( changedFileIndex, ref change, ref type );
+		}
 	}
 }
