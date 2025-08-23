@@ -3,10 +3,11 @@
 	<PropertyGroup>
 		<AssemblyName>Facepunch.Steamworks.Win64</AssemblyName>
 		<DefineConstants>$(DefineConstants);PLATFORM_WIN64;PLATFORM_WIN;PLATFORM_64</DefineConstants>
-		<TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
+		<TargetFramework>net8.0</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>	
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <IsAotCompatible>true</IsAotCompatible>
 		<RootNamespace>Steamworks</RootNamespace>
 	</PropertyGroup>
 
