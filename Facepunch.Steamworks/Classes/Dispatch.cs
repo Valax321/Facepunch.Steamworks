@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Steamworks.Data;
@@ -287,7 +288,7 @@ namespace Steamworks
 		/// <summary>
 		/// Install a global callback. The passed function will get called if it's all good.
 		/// </summary>
-		internal static void Install<T>( Action<T> p, bool server = false ) where T : ICallbackData
+		internal static void Install<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] T>( Action<T> p, bool server = false ) where T : ICallbackData
 		{
 			var t = default( T );
 			var type = t.CallbackType;

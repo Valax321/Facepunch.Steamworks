@@ -1,6 +1,7 @@
 ﻿using Steamworks.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -11,7 +12,7 @@ namespace Steamworks
 	/// <summary>
 	/// An awaitable version of a SteamAPICall_t
 	/// </summary>
-	internal struct CallResult<T> : INotifyCompletion where T : struct, ICallbackData
+	internal struct CallResult<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] T> : INotifyCompletion where T : struct, ICallbackData
 	{
 		SteamAPICall_t call;
 		ISteamUtils utils;
@@ -64,7 +65,7 @@ namespace Steamworks
 
 				Dispatch.OnDebugCallback?.Invoke( t.CallbackType, Dispatch.CallbackToString( t.CallbackType, ptr, size ), server );
 
-				return ((T)Marshal.PtrToStructure( ptr, typeof( T ) ));
+				return Marshal.PtrToStructure<T>( ptr );
 			}
 			finally
 			{

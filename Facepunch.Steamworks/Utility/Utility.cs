@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,14 +13,15 @@ namespace Steamworks
     {
 	    public static readonly Encoding Utf8NoBom = new UTF8Encoding( false, false );
 
-        static internal T ToType<T>( this IntPtr ptr )
+        static internal T ToType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] T>( this IntPtr ptr )
         {
             if ( ptr == IntPtr.Zero )
                 return default;
 
-            return (T)Marshal.PtrToStructure( ptr, typeof( T ) );
+            return Marshal.PtrToStructure<T>( ptr );
         }
 
+        [RequiresDynamicCode("Marshalling code for the object might not be available")]
         static internal object ToType( this IntPtr ptr, System.Type t )
         {
             if ( ptr == IntPtr.Zero )
