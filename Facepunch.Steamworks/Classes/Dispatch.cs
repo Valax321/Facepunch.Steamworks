@@ -169,7 +169,9 @@ namespace Steamworks
 			if ( !CallbackTypeFactory.All.TryGetValue( type, out var t ) )
 				return $"[{type} not in sdk]";
 
+#pragma warning disable IL3050
 			var strct = data.ToType( t );
+#pragma warning restore IL3050
 			if ( strct == null )
 				return "[null]";
 
