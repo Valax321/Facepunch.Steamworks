@@ -156,6 +156,8 @@ public static class Cleanup
 		if ( name == "TimelineGameMode" ) return "public";
 		if ( name == "TimelineEventClipPriority" ) return "public";
 		if ( name == "TimelineEventHandle" ) return "public";
+		if ( name == "RemoteStorageLocalFileChange" ) return "public";
+		if ( name == "RemoteStorageFilePathType" ) return "public";
 
 		return "internal";
 	}
