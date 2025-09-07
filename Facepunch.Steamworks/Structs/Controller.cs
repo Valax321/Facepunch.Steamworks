@@ -16,6 +16,8 @@ namespace Steamworks
 		public ulong Id => Handle.Value;
 		public InputType InputType => SteamInput.Internal.GetInputTypeForHandle( Handle );
 
+		public int GamepadIndex => SteamInput.Internal.GetGamepadIndexForController( Handle );
+
 		/// <summary>
 		/// Reconfigure the controller to use the specified action set (ie 'Menu', 'Walk' or 'Drive')
 		/// This is cheap, and can be safely called repeatedly. It's often easier to repeatedly call it in
@@ -45,6 +47,15 @@ namespace Steamworks
 		public AnalogState GetAnalogState( string actionName )
 		{
 			return SteamInput.Internal.GetAnalogActionData( Handle, SteamInput.GetAnalogActionHandle( actionName ) );
+		}
+
+		/// <summary>
+		/// Get an action origin that you can use in your glyph look up table or passed into GetGlyphForActionOrigin or GetStringForActionOrigin.
+		/// </summary>
+		/// <param name="origin">This is the button you want to get the image for ex: <see cref="XboxOrigin.A"/>.</param>
+		public InputActionOrigin GetActionOriginFromXboxOrigin( XboxOrigin origin )
+		{
+			return SteamInput.Internal.GetActionOriginFromXboxOrigin( Handle, origin );
 		}
 
 

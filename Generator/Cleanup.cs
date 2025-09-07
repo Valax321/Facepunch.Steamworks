@@ -158,6 +158,8 @@ public static class Cleanup
 		if ( name == "TimelineEventHandle" ) return "public";
 		if ( name == "RemoteStorageLocalFileChange" ) return "public";
 		if ( name == "RemoteStorageFilePathType" ) return "public";
+		if ( name == "InputActionOrigin" ) return "public";
+		if ( name == "XboxOrigin" ) return "public";
 
 		return "internal";
 	}
