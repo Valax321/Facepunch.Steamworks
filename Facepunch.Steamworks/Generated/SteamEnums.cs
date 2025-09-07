@@ -1050,7 +1050,7 @@ namespace Steamworks
 	//
 	// EInputActionOrigin
 	//
-	internal enum InputActionOrigin : int
+	public enum InputActionOrigin : int
 	{
 		None = 0,
 		SteamController_A = 1,
@@ -1469,7 +1469,7 @@ namespace Steamworks
 	//
 	// EXboxOrigin
 	//
-	internal enum XboxOrigin : int
+	public enum XboxOrigin : int
 	{
 		A = 0,
 		B = 1,

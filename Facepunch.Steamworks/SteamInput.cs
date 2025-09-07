@@ -50,7 +50,40 @@ namespace Steamworks
 			}
 		}
 
+		/// <summary>
+		/// Adds the list of connected controllers to the given list.
+		/// <param name="controllers">The list of controllers to append to.</param>
+		/// </summary>
+		public static void GetConnectedControllers( IList<Controller> controllers )
+		{
+			var num = Internal.GetConnectedControllers( queryArray );
+			for ( int i = 0; i < num; i++ )
+			{
+				controllers.Add(new Controller(queryArray[i]));
+			}
+		}
 
+		/// <summary>
+		/// Returns the associated controller handle for the specified emulated gamepad. Can be used with GetInputTypeForHandle to determine the type of controller using Steam Input Gamepad Emulation.
+		/// </summary>
+		/// <param name="gamepadIndex">The index of the emulated gamepad you want to get a controller handle for.</param>
+		public static Controller GetControllerForGamepadIndex( int gamepadIndex )
+		{
+			var handle = Internal.GetControllerForGamepadIndex( gamepadIndex );
+			return new Controller( handle );
+		}
+
+		/// <summary>
+		/// Get the equivalent origin for a given controller type or the closest controller type that existed in the SDK you built into your game if eDestinationInputType is k_ESteamInputType_Unknown. This action origin can be used in your glyph look up table or passed into GetGlyphForActionOrigin or GetStringForActionOrigin.
+		/// </summary>
+		/// <param name="destinationInputType">The controller type you want to translate to. Steam will pick the closest type from your SDK version if k_ESteamInputType_Unknown is used.</param>
+		/// <param name="sourceOrigin">This is the button you want to translate.</param>
+		public static InputActionOrigin TranslateActionOrigin( InputType destinationInputType,
+			InputActionOrigin sourceOrigin )
+		{
+			return Internal.TranslateActionOrigin( destinationInputType, sourceOrigin );
+		}
+		
         /// <summary>
         /// Return an absolute path to the PNG image glyph for the provided digital action name. The current
         /// action set in use for the controller will be used for the lookup. You should cache the result and
