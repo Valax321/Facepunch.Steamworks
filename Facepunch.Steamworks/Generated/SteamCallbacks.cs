@@ -797,123 +797,6 @@ namespace Steamworks.Data
 	}
 	
 	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPackSize )]
-	internal struct SearchForGameProgressCallback_t : ICallbackData
-	{
-		internal ulong LSearchID; // m_ullSearchID uint64
-		internal Result Result; // m_eResult EResult
-		internal ulong LobbyID; // m_lobbyID CSteamID
-		internal ulong SteamIDEndedSearch; // m_steamIDEndedSearch CSteamID
-		internal int SecondsRemainingEstimate; // m_nSecondsRemainingEstimate int32
-		internal int CPlayersSearching; // m_cPlayersSearching int32
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<SearchForGameProgressCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.SearchForGameProgressCallback;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPackSize )]
-	internal struct SearchForGameResultCallback_t : ICallbackData
-	{
-		internal ulong LSearchID; // m_ullSearchID uint64
-		internal Result Result; // m_eResult EResult
-		internal int CountPlayersInGame; // m_nCountPlayersInGame int32
-		internal int CountAcceptedGame; // m_nCountAcceptedGame int32
-		internal ulong SteamIDHost; // m_steamIDHost CSteamID
-		[MarshalAs(UnmanagedType.I1)]
-		internal bool FinalCallback; // m_bFinalCallback bool
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<SearchForGameResultCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.SearchForGameResultCallback;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct RequestPlayersForGameProgressCallback_t : ICallbackData
-	{
-		internal Result Result; // m_eResult EResult
-		internal ulong LSearchID; // m_ullSearchID uint64
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<RequestPlayersForGameProgressCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.RequestPlayersForGameProgressCallback;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPackSize )]
-	internal struct RequestPlayersForGameResultCallback_t : ICallbackData
-	{
-		internal Result Result; // m_eResult EResult
-		internal ulong LSearchID; // m_ullSearchID uint64
-		internal ulong SteamIDPlayerFound; // m_SteamIDPlayerFound CSteamID
-		internal ulong SteamIDLobby; // m_SteamIDLobby CSteamID
-		internal RequestPlayersForGameResultCallback_t.PlayerAcceptState_t PlayerAcceptState; // m_ePlayerAcceptState RequestPlayersForGameResultCallback_t::PlayerAcceptState_t
-		internal int PlayerIndex; // m_nPlayerIndex int32
-		internal int TotalPlayersFound; // m_nTotalPlayersFound int32
-		internal int TotalPlayersAcceptedGame; // m_nTotalPlayersAcceptedGame int32
-		internal int SuggestedTeamIndex; // m_nSuggestedTeamIndex int32
-		internal ulong LUniqueGameID; // m_ullUniqueGameID uint64
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<RequestPlayersForGameResultCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.RequestPlayersForGameResultCallback;
-		#endregion
-		internal enum PlayerAcceptState_t : int
-		{
-			Unknown = 0,
-			PlayerAccepted = 1,
-			PlayerDeclined = 2,
-		}
-		
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct RequestPlayersForGameFinalResultCallback_t : ICallbackData
-	{
-		internal Result Result; // m_eResult EResult
-		internal ulong LSearchID; // m_ullSearchID uint64
-		internal ulong LUniqueGameID; // m_ullUniqueGameID uint64
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<RequestPlayersForGameFinalResultCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.RequestPlayersForGameFinalResultCallback;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPackSize )]
-	internal struct SubmitPlayerResultResultCallback_t : ICallbackData
-	{
-		internal Result Result; // m_eResult EResult
-		internal ulong UllUniqueGameID; // ullUniqueGameID uint64
-		internal ulong SteamIDPlayer; // steamIDPlayer CSteamID
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<SubmitPlayerResultResultCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.SubmitPlayerResultResultCallback;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct EndGameResultCallback_t : ICallbackData
-	{
-		internal Result Result; // m_eResult EResult
-		internal ulong UllUniqueGameID; // ullUniqueGameID uint64
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<EndGameResultCallback_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.EndGameResultCallback;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPackSize )]
 	internal struct JoinPartyCallback_t : ICallbackData
 	{
 		internal Result Result; // m_eResult EResult
@@ -1704,168 +1587,6 @@ namespace Steamworks.Data
 		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<VolumeHasChanged_t>( );
 		public int DataSize => _datasize;
 		public CallbackType CallbackType => CallbackType.VolumeHasChanged;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerRemoteWillActivate_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerRemoteWillActivate_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerRemoteWillActivate;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerRemoteWillDeactivate_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerRemoteWillDeactivate_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerRemoteWillDeactivate;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerRemoteToFront_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerRemoteToFront_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerRemoteToFront;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWillQuit_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWillQuit_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWillQuit;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsPlay_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsPlay_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsPlay;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsPause_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsPause_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsPause;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsPlayPrevious_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsPlayPrevious_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsPlayPrevious;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsPlayNext_t : ICallbackData
-	{
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsPlayNext_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsPlayNext;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsShuffled_t : ICallbackData
-	{
-		[MarshalAs(UnmanagedType.I1)]
-		internal bool Shuffled; // m_bShuffled bool
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsShuffled_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsShuffled;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsLooped_t : ICallbackData
-	{
-		[MarshalAs(UnmanagedType.I1)]
-		internal bool Looped; // m_bLooped bool
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsLooped_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsLooped;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsVolume_t : ICallbackData
-	{
-		internal float NewVolume; // m_flNewVolume float
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsVolume_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsVolume;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerSelectsQueueEntry_t : ICallbackData
-	{
-		internal int NID; // nID int
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerSelectsQueueEntry_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerSelectsQueueEntry;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerSelectsPlaylistEntry_t : ICallbackData
-	{
-		internal int NID; // nID int
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerSelectsPlaylistEntry_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerSelectsPlaylistEntry;
-		#endregion
-	}
-	
-	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct MusicPlayerWantsPlayingRepeatStatus_t : ICallbackData
-	{
-		internal int PlayingRepeatStatus; // m_nPlayingRepeatStatus int
-		
-		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<MusicPlayerWantsPlayingRepeatStatus_t>( );
-		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.MusicPlayerWantsPlayingRepeatStatus;
 		#endregion
 	}
 	
@@ -2813,6 +2534,21 @@ namespace Steamworks.Data
 		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<SteamRemotePlayTogetherGuestInvite_t>( );
 		public int DataSize => _datasize;
 		public CallbackType CallbackType => CallbackType.SteamRemotePlayTogetherGuestInvite;
+		#endregion
+	}
+	
+	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
+	internal struct SteamRemotePlaySessionAvatarLoaded_t : ICallbackData
+	{
+		internal uint SessionID; // m_unSessionID RemotePlaySessionID_t
+		internal int Image; // m_iImage int
+		internal int Wide; // m_iWide int
+		internal int Tall; // m_iTall int
+		
+		#region SteamCallback
+		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf<SteamRemotePlaySessionAvatarLoaded_t>( );
+		public int DataSize => _datasize;
+		public CallbackType CallbackType => CallbackType.SteamRemotePlaySessionAvatarLoaded;
 		#endregion
 	}
 	

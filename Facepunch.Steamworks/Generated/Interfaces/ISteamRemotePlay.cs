@@ -9,16 +9,16 @@ namespace Steamworks
 {
 	internal unsafe partial class ISteamRemotePlay : SteamInterface
 	{
-		public const string Version = "STEAMREMOTEPLAY_INTERFACE_VERSION003";
+		public const string Version = "STEAMREMOTEPLAY_INTERFACE_VERSION004";
 		
 		internal ISteamRemotePlay( bool IsGameServer )
 		{
 			SetupInterface( IsGameServer );
 		}
 		
-		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_SteamRemotePlay_v003", CallingConvention = Platform.CC)]
-		internal static extern IntPtr SteamAPI_SteamRemotePlay_v003();
-		public override IntPtr GetUserInterfacePointer() => SteamAPI_SteamRemotePlay_v003();
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_SteamRemotePlay_v004", CallingConvention = Platform.CC)]
+		internal static extern IntPtr SteamAPI_SteamRemotePlay_v004();
+		public override IntPtr GetUserInterfacePointer() => SteamAPI_SteamRemotePlay_v004();
 		
 		
 		#region FunctionMeta
@@ -44,6 +44,18 @@ namespace Steamworks
 		}
 		
 		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_BSessionRemotePlayTogether", CallingConvention = Platform.CC)]
+		[return: MarshalAs( UnmanagedType.I1 )]
+		private static extern bool _BSessionRemotePlayTogether( IntPtr self, RemotePlaySessionID_t unSessionID );
+		
+		#endregion
+		internal bool BSessionRemotePlayTogether( RemotePlaySessionID_t unSessionID )
+		{
+			var returnValue = _BSessionRemotePlayTogether( Self, unSessionID );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
 		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_GetSessionSteamID", CallingConvention = Platform.CC)]
 		private static extern SteamId _GetSessionSteamID( IntPtr self, RemotePlaySessionID_t unSessionID );
 		
@@ -51,6 +63,50 @@ namespace Steamworks
 		internal SteamId GetSessionSteamID( RemotePlaySessionID_t unSessionID )
 		{
 			var returnValue = _GetSessionSteamID( Self, unSessionID );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_GetSessionGuestID", CallingConvention = Platform.CC)]
+		private static extern uint _GetSessionGuestID( IntPtr self, RemotePlaySessionID_t unSessionID );
+		
+		#endregion
+		internal uint GetSessionGuestID( RemotePlaySessionID_t unSessionID )
+		{
+			var returnValue = _GetSessionGuestID( Self, unSessionID );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_GetSmallSessionAvatar", CallingConvention = Platform.CC)]
+		private static extern int _GetSmallSessionAvatar( IntPtr self, RemotePlaySessionID_t unSessionID );
+		
+		#endregion
+		internal int GetSmallSessionAvatar( RemotePlaySessionID_t unSessionID )
+		{
+			var returnValue = _GetSmallSessionAvatar( Self, unSessionID );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_GetMediumSessionAvatar", CallingConvention = Platform.CC)]
+		private static extern int _GetMediumSessionAvatar( IntPtr self, RemotePlaySessionID_t unSessionID );
+		
+		#endregion
+		internal int GetMediumSessionAvatar( RemotePlaySessionID_t unSessionID )
+		{
+			var returnValue = _GetMediumSessionAvatar( Self, unSessionID );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_GetLargeSessionAvatar", CallingConvention = Platform.CC)]
+		private static extern int _GetLargeSessionAvatar( IntPtr self, RemotePlaySessionID_t unSessionID );
+		
+		#endregion
+		internal int GetLargeSessionAvatar( RemotePlaySessionID_t unSessionID )
+		{
+			var returnValue = _GetLargeSessionAvatar( Self, unSessionID );
 			return returnValue;
 		}
 		

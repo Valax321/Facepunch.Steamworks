@@ -197,6 +197,10 @@ public static class Cleanup
 		}
 
 		if ( name == "ISteamUGC.RequestUGCDetails" ) return true;
+		
+		// As of steamworks 1.64
+		if ( name == "ISteamGameSearch" ) return true;
+		if ( name == "ISteamMusicRemote" ) return true;
 
 		return false;
 	}	

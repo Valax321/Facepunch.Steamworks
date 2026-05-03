@@ -1178,5 +1178,39 @@ namespace Steamworks
 			return returnValue;
 		}
 		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamUGC_MarkDownloadedItemAsUnused", CallingConvention = Platform.CC)]
+		[return: MarshalAs( UnmanagedType.I1 )]
+		private static extern bool _MarkDownloadedItemAsUnused( IntPtr self, PublishedFileId nPublishedFileID );
+		
+		#endregion
+		internal bool MarkDownloadedItemAsUnused( PublishedFileId nPublishedFileID )
+		{
+			var returnValue = _MarkDownloadedItemAsUnused( Self, nPublishedFileID );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetNumDownloadedItems", CallingConvention = Platform.CC)]
+		private static extern uint _GetNumDownloadedItems( IntPtr self );
+		
+		#endregion
+		internal uint GetNumDownloadedItems()
+		{
+			var returnValue = _GetNumDownloadedItems( Self );
+			return returnValue;
+		}
+		
+		#region FunctionMeta
+		[DllImport( Platform.LibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetDownloadedItems", CallingConvention = Platform.CC)]
+		private static extern uint _GetDownloadedItems( IntPtr self, [In,Out] PublishedFileId[]  pvecPublishedFileIDs, uint cMaxEntries );
+		
+		#endregion
+		internal uint GetDownloadedItems( [In,Out] PublishedFileId[]  pvecPublishedFileIDs, uint cMaxEntries )
+		{
+			var returnValue = _GetDownloadedItems( Self, pvecPublishedFileIDs, cMaxEntries );
+			return returnValue;
+		}
+		
 	}
 }
