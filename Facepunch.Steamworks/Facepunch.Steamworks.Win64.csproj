@@ -2,21 +2,22 @@
 
 	<PropertyGroup>
 		<AssemblyName>Facepunch.Steamworks.Win64</AssemblyName>
-		<TargetFrameworks>net46;netstandard2.1;net6.0</TargetFrameworks>
 		<DefineConstants>$(DefineConstants);PLATFORM_WIN64;PLATFORM_WIN;PLATFORM_64</DefineConstants>
 		<TargetFramework>net8.0</TargetFramework>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>	
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <IsAotCompatible>true</IsAotCompatible>
+		<IsAotCompatible>true</IsAotCompatible>
 		<RootNamespace>Steamworks</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<FrameworkPathOverride Condition="'$(TargetFramework)' == 'net40'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client</FrameworkPathOverride>
+		<FrameworkPathOverride Condition="'$(TargetFramework)' == 'net40'">C:\Program Files
+			(x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client</FrameworkPathOverride>
 		<Authors>Garry Newman</Authors>
 		<PackageId>Facepunch.Steamworks</PackageId>
-		<PackageDescription>Steamworks implementation with an emphasis on making things easy. For Windows x64.</PackageDescription>
+		<PackageDescription>Steamworks implementation with an emphasis on making things easy. For
+			Windows x64.</PackageDescription>
 		<PackageProjectUrl>https://github.com/Facepunch/Facepunch.Steamworks</PackageProjectUrl>
 		<PackageIcon>Facepunch.Steamworks.jpg</PackageIcon>
 		<PackageTags>facepunch;steam;unity;steamworks;valve</PackageTags>
@@ -26,7 +27,7 @@
 		<RepositoryType>git</RepositoryType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
-  
+
 	<ItemGroup>
 		<None Include="Facepunch.Steamworks.jpg">
 			<Pack>true</Pack>
@@ -36,25 +37,27 @@
 
 	<Import Project="Facepunch.Steamworks.targets" />
 
-  <Target Name="BuildUnityOutput" AfterTargets="PostBuildEvent" Condition="'$(TargetFramework)' == 'net46'">
-    <MSBuild Projects="$(MSBuildProjectDirectory)\Facepunch.Steamworks.Win32.csproj"
-             Properties="Configuration=$(Configuration);TargetFramework=net46"
-             Targets="Build" />
-    <MSBuild Projects="$(MSBuildProjectDirectory)\Facepunch.Steamworks.Posix.csproj"
-             Properties="Configuration=$(Configuration);TargetFramework=net46"
-             Targets="Build" />
+	<Target Name="BuildUnityOutput" AfterTargets="PostBuildEvent"
+		Condition="'$(TargetFramework)' == 'net46'">
+		<MSBuild Projects="$(MSBuildProjectDirectory)\Facepunch.Steamworks.Win32.csproj"
+			Properties="Configuration=$(Configuration);TargetFramework=net46"
+			Targets="Build" />
+		<MSBuild Projects="$(MSBuildProjectDirectory)\Facepunch.Steamworks.Posix.csproj"
+			Properties="Configuration=$(Configuration);TargetFramework=net46"
+			Targets="Build" />
 
-    <ItemGroup>
-      <UnityPluginFiles Include="$(MSBuildProjectDirectory)\..\UnityPlugin\**\*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(UnityPluginFiles)"
-          DestinationFiles="@(UnityPluginFiles->'$(BaseOutputPath)$(Configuration)\Unity\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<ItemGroup>
+			<UnityPluginFiles Include="$(MSBuildProjectDirectory)\..\UnityPlugin\**\*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(UnityPluginFiles)"
+			DestinationFiles="@(UnityPluginFiles->'$(BaseOutputPath)$(Configuration)\Unity\%(RecursiveDir)%(Filename)%(Extension)')" />
 
-    <ItemGroup>
-      <Net46Assemblies Include="$(BaseOutputPath)$(Configuration)\net46\Facepunch.Steamworks.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(Net46Assemblies)"
-          DestinationFolder="$(BaseOutputPath)$(Configuration)\Unity\" />
-  </Target>
+		<ItemGroup>
+			<Net46Assemblies
+				Include="$(BaseOutputPath)$(Configuration)\net46\Facepunch.Steamworks.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(Net46Assemblies)"
+			DestinationFolder="$(BaseOutputPath)$(Configuration)\Unity\" />
+	</Target>
 
 </Project>
