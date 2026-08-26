@@ -82,6 +82,23 @@ namespace Steamworks
 
 			return num;
 		}
+		
+		/// <summary>
+		/// Adds the connected controllers to the list and returns the count. Identical
+		/// results to <see cref="Controllers"/> but doesn't allocate, for per-frame polling.
+		/// <typeparam name="T">The list type. Templated to avoid boxing or virtual method calls in jitted code.</typeparam>
+		/// </summary>
+		public static int GetControllers<T>( T buffer ) where T : IList<Controller>
+		{
+			var num = Internal.GetConnectedControllers( queryArray );
+
+			for ( int i = 0; i < num; i++ )
+			{
+				buffer.Add( new Controller( queryArray[i] ) );
+			}
+
+			return num;
+		}
 
 
 		/// <summary>
