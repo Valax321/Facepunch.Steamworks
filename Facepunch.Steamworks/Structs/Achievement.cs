@@ -9,7 +9,7 @@ namespace Steamworks.Data
 	/// <summary>
 	/// Represents a Steam Achievement.
 	/// </summary>
-	public struct Achievement
+	public struct Achievement : IEquatable<Achievement>
 	{
 		internal string Value;
 
@@ -157,5 +157,34 @@ namespace Steamworks.Data
 		{
 			return SteamUserStats.Internal.ClearAchievement( Value );
 		}
+		
+		#region Equatable implementation
+
+		public bool Equals(Achievement other)
+		{
+			return Value == other.Value;
+		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is Achievement other && Equals(other);
+		}
+
+		public override int GetHashCode()
+		{
+			return (Value != null ? Value.GetHashCode() : 0);
+		}
+
+		public static bool operator ==(Achievement left, Achievement right)
+		{
+			return left.Equals(right);
+		}
+
+		public static bool operator !=(Achievement left, Achievement right)
+		{
+			return !left.Equals(right);
+		}
+		
+		#endregion
 	}
 }
