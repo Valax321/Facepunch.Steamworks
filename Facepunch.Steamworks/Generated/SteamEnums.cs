@@ -1587,7 +1587,7 @@ namespace Steamworks
 	//
 	// EControllerHapticLocation
 	//
-	internal enum ControllerHapticLocation : int
+	public enum ControllerHapticLocation : int
 	{
 		Left = 1,
 		Right = 2,
