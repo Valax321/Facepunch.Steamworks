@@ -17,7 +17,7 @@ namespace Steamworks
 			if ( Interface.Self == IntPtr.Zero ) return false;
 
 			InstallEvents();
-			RequestCurrentStats();
+			//RequestCurrentStats();
 
 			return true;
 		}
