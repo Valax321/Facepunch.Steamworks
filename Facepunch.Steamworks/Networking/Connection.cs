@@ -69,7 +69,7 @@ namespace Steamworks.Data
 		/// <summary>
 		/// This is the best version to use.
 		/// </summary>
-		public unsafe Result SendMessage( IntPtr ptr, int size, SendType sendType = SendType.Reliable, ushort laneIndex = 0 )
+		public unsafe Result SendMessage( IntPtr ptr, int size, SendType sendType = SendType.Reliable, ushort laneIndex = 0, bool deleteFailedMessage = false )
 		{
 			if ( ptr == IntPtr.Zero )
 				throw new ArgumentNullException( nameof( ptr ) );
@@ -88,7 +88,7 @@ namespace Steamworks.Data
 			message->IdxLane = laneIndex;
 
 			long messageNumber = 0;
-			SteamNetworkingSockets.Internal.SendMessages( 1, &message, &messageNumber );
+			SteamNetworkingSockets.Internal.SendMessages( 1, &message, &messageNumber, deleteFailedMessage );
 
 			return messageNumber >= 0
 				? Result.OK

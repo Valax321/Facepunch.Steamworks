@@ -307,5 +307,12 @@ namespace Steamworks
 			return true;
         }
 
+		public static GamePerformanceSetting GamePerformanceSetting
+		{
+			set
+			{
+				Internal.SetGamePerformanceSetting( value );
+			}
+		}
 	}
 }

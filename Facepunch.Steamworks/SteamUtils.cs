@@ -287,8 +287,23 @@ namespace Steamworks
 		/// <summary>
 		/// Gets whether or not Steam itself is running on the Steam Deck.
 		/// </summary>
-		public static bool IsRunningOnSteamDeck => Internal.IsSteamRunningOnSteamDeck();
+		[Obsolete("Use SteamHardwareType instead to handle new SteamOS systems.")]
+		public static bool IsRunningOnSteamDeck => Internal.IsRunningOnSteamHardware() == SteamHardwareType.SteamDeck;
 
+		/// <summary>
+		/// Gets the type of Steam hardware the application is running on.
+		/// </summary>
+		public static SteamHardwareType SteamHardwareType => Internal.IsRunningOnSteamHardware();
+
+		/// <summary>
+		/// Gets whether the application is running under Proton.
+		/// </summary>
+		public static bool IsRunningUnderProton => Internal.IsRunningUnderProton();
+		
+		/// <summary>
+		/// Gets the default hardware config.
+		/// </summary>
+		public static SteamHardwareDefaultConfig SteamHardwareDefaultConfig => Internal.GetSteamHardwareDefaultConfig();
 
 		/// <summary>
 		/// In game launchers that don't have controller support: You can call this to have 

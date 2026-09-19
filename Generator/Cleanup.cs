@@ -161,6 +161,9 @@ public static class Cleanup
 		if ( name == "RemoteStorageFilePathType" ) return "public";
 		if ( name == "InputActionOrigin" ) return "public";
 		if ( name == "XboxOrigin" ) return "public";
+		if ( name == "SteamHardwareType" ) return "public";
+		if ( name == "GamePerformanceSetting" ) return "public";
+		if ( name == "SteamHardwareDefaultConfig" ) return "public";
 
 		return "internal";
 	}

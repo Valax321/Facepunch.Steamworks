@@ -160,7 +160,7 @@ namespace Steamworks
 		/// <param name="size">Size of the message data.</param>
 		/// <param name="sendType">Flags to control delivery of the message.</param>
 		/// <param name="results">An optional array to hold the results of sending the messages for each connection.</param>
-		public unsafe void SendMessages( Connection[] connections, int connectionCount, IntPtr ptr, int size, SendType sendType = SendType.Reliable, Result[] results = null )
+		public unsafe void SendMessages( Connection[] connections, int connectionCount, IntPtr ptr, int size, SendType sendType = SendType.Reliable, Result[] results = null, bool deleteFailedMessages = false )
 		{
 			if ( connections == null )
 				throw new ArgumentNullException( nameof( connections ) );
@@ -198,7 +198,7 @@ namespace Steamworks
 				messages[i]->FreeDataPtr = BufferManager.FreeFunctionPointer;
 			}
 
-			SteamNetworkingSockets.Internal.SendMessages( connectionCount, messages, messageNumberOrResults );
+			SteamNetworkingSockets.Internal.SendMessages( connectionCount, messages, messageNumberOrResults, deleteFailedMessages );
 
 			if (results == null)
 				return;

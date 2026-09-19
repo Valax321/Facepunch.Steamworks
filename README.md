@@ -3,6 +3,7 @@
 [Another fucking c# Steamworks implementation](https://wiki.facepunch.com/steamworks/)
 
 ![Build All](https://github.com/Valax321/Facepunch.Steamworks/workflows/Build%20All/badge.svg)
+![Steamworks SDK: v1.65](https://img.shields.io/badge/Steamworks-v1.65-blue?logo=steam)
 
 ## Features
 
