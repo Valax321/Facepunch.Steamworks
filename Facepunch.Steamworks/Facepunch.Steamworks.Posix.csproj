@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>Facepunch.Steamworks.Posix</AssemblyName>
+        <BaseOutputPath>$(MSBuildThisFileDirectory)\bin\posix</BaseOutputPath>
+        <BaseIntermediateDirectory>$(MSBuildThisFileDirectory)\obj\posix</BaseIntermediateDirectory>
+		<AssemblyName>Facepunch.Steamworks</AssemblyName>
 		<DefineConstants>$(DefineConstants);PLATFORM_POSIX</DefineConstants>
 		<TargetFramework>net8.0</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
