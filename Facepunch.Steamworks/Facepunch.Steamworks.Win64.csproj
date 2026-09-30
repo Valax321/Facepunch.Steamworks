@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
         <BaseOutputPath>$(MSBuildThisFileDirectory)\bin\posix</BaseOutputPath>
-        <BaseIntermediateDirectory>$(MSBuildThisFileDirectory)\obj\posix</BaseIntermediateDirectory>
+        <IntermediateOutputPath>$(MSBuildThisFileDirectory)obj\win64\$(Configuration)</IntermediateOutputPath>
         <AssemblyName>Facepunch.Steamworks</AssemblyName>
 		<DefineConstants>$(DefineConstants);PLATFORM_WIN64;PLATFORM_WIN;PLATFORM_64</DefineConstants>
 		<TargetFramework>net8.0</TargetFramework>
